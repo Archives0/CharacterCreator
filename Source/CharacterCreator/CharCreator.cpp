@@ -378,6 +378,8 @@ void ACharCreator::ReadRaces()
 
 	// Remove extension, then add to race names array. Used for UI display purposes.
 
+	raceNames.Reserve(rNames.Num());
+
 	for (FString name : rNames)
 	{
 		FString newName = name;
@@ -387,6 +389,8 @@ void ACharCreator::ReadRaces()
 	}
 
 	// Create FRace for each race in Data/Races and add to races array.
+
+	raceRegistry.Reserve(rNames.Num());
 
 	for (FString raceFile : rNames)
 	{
@@ -420,6 +424,8 @@ void ACharCreator::ReadClasses()
 	TArray<FString> cNames{};
 	IFileManager::Get().FindFiles(cNames, *classDir, TEXT("*.txt"));
 
+	classNames.Reserve(cNames.Num());
+
 	for (FString name : cNames)
 	{
 		FString className = name;
@@ -429,6 +435,8 @@ void ACharCreator::ReadClasses()
 	}
 
 	// Create FBackground for each class in Data/Classes and add to classes array.
+
+	classRegistry.Reserve(cNames.Num());
 
 	TArray<FString> cStats{};
 	IFileManager::Get().FindFiles(cStats, *classStatsDir, TEXT("*.txt"));
